@@ -55,7 +55,7 @@ A step by step series of examples that tell you how to get a development env run
 Clone the GIT repository
 
 ```
-# git clone https://wwwin-github.cisco.com/joshorva/OMDb
+# git clone https://github.com/jkhorvath/OMDb
 ```
 
 Change directory into the project
@@ -140,7 +140,7 @@ total 16
 
 ## Running sample program
 
-The sample application has a few options that you can use to tailor the search and result. The options can be view by executing the application without any arguments.
+The sample application has a few options that you can use to tailor the search and result. The options can be viewed by executing the application without any arguments.
 
 ```
 /home/OMDB # java -jar OMDb.jar

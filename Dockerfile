@@ -2,8 +2,9 @@
 FROM openjdk:8-jre-alpine
 # Copy JAR into image
 COPY target/OMDb-1.0.1-jar-with-dependencies.jar /home/OMDB/OMDb.jar
+# Copy helper shell script
 COPY src/run.sh /home/OMDB/run.sh
-# Run application with this command line
+# Run application by default with this command line
 CMD ["/home/OMDB/run.sh"]
 
 #
@@ -40,28 +41,4 @@ CMD ["/home/OMDB/run.sh"]
 #
 # You can re-run the "java" command and see the output if you use (note that the commands need to follow each other and be quick):
 #  docker container start ea5ffe34f207 ; docker container attach ea5ffe34f207
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-# 
-#
 #
