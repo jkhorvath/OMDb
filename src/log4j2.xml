@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="30" status="info">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%highlight{%message%n}"/>
+        </Console>
+        <RollingFile append="true" name="FileLogger" fileName="/home/OMDB/logs/omdb.log"
+                     filePattern="/home/OMDB/logs/$${date:yyyy-MM-dd}/cwm-%d{yyyy-MM-dd}-%i.log.zip">
+            <PatternLayout pattern="%highlight{%d{DEFAULT} [%t] %-5level %location - %message%n}" />
+            <DefaultRolloverStrategy min="1001" max="2000">
+                <Delete basePath="/home/OMDB/logs" maxDepth="3">
+                    <IfFileName glob="*/cwm-*.log.zip" />
+                    <IfLastModified age="1d" />
+                </Delete>
+            </DefaultRolloverStrategy>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="50 MB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.cisco" additivity="true" level="${env:LOG_LEVEL:-warn}">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Root level="trace">
+            <AppenderRef ref="FileLogger"/>
+        </Root>
+    </Loggers>
+</Configuration>
