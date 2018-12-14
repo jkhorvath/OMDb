@@ -8,16 +8,6 @@
     <name>OMDb</name>
     <description>Query the http://www.omdbapi.com/ OMDB API</description>
     <dependencies>
-        <dependency>
-            <groupId>com.cisco.as</groupId>
-            <artifactId>ASBase</artifactId>
-            <version>1.0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.cisco.as</groupId>
-            <artifactId>Common</artifactId>
-            <version>1.0.1</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/javax.json/javax.json-api -->
         <dependency>
             <groupId>javax.json</groupId>

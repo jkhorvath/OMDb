@@ -155,9 +155,52 @@ The `-t` option is used to tell OMDb if you are specifying a movie, a series, or
 After the movie name is given, an additional argument can be passed to denote the year the movie was released.
 
 
+## Cleanup
+
+Note that after running this sample application, you will have a few docker images and runnable containers left. You can see these with the following commands.
+
+```
+# [desktop] 15:48 root@jkh-7:~# docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                     PORTS               NAMES
+22e5fa776430        omdb                "/bin/sh"                9 minutes ago       Exited (0) 6 seconds ago                       zen_chandrasekhar
+bec0ac354021        omdb                "java -jar /home/O..."   9 minutes ago       Exited (0) 9 minutes ago                       trusting_lalande
+51ce8072aba0        omdb                "java -jar /home/O..."   9 minutes ago       Exited (0) 9 minutes ago                       eloquent_darwin
+dc7dd79d6036        omdb                "/home/OMDB/run.sh..."   9 minutes ago       Exited (0) 9 minutes ago                       objective_goldberg
+[desktop] 15:48 root@jkh-7:~# docker image ls
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+omdb                latest              a79347d3f4e5        10 minutes ago      86.5 MB
+docker.io/openjdk   8-jre-alpine        2e01f547f003        7 weeks ago         83 MB
+[desktop] 15:49 root@jkh-7:~#
+```
+
+If all of these are exited, then you can clean these up by using the following sample commands.
+
+```
+[desktop] 15:52 root@jkh-7:~# docker container rm 22e5fa776430 bec0ac354021 51ce8072aba0 dc7dd79d6036
+22e5fa776430
+bec0ac354021
+51ce8072aba0
+dc7dd79d6036
+[desktop] 15:53 root@jkh-7:~# docker image rm a79347d3f4e5 2e01f547f003
+Untagged: omdb:latest
+Deleted: sha256:a79347d3f4e520040d0dbc7529b042e2a59b282eac6165327b85ae0410bd81e9
+Deleted: sha256:981f457819cdaf38c04a29ba8608b35e1f5d4f8004a2d80e0381075ebf7115b4
+Deleted: sha256:e37de409a9228fde0081fc2ff33997f6d4a3e5d81549f9080f8b8d98cdbbacdb
+Deleted: sha256:2b974e77039dffd5a3a982adc6c8fb8c838ca17ef427c745e569b9de31c534fb
+Deleted: sha256:2bd2816ba5050a30519010c1c15fb7e4179a4ec63a249b46130fdb5ac8084152
+Untagged: docker.io/openjdk:8-jre-alpine
+Untagged: docker.io/openjdk@sha256:e8a689c4b2913f07e401e5e9325d66cecc33d30738aadf1dbe3db5af70997742
+Deleted: sha256:2e01f547f00384dbab90a4dd9bde29caf862a89c2356f58aeed38fa7b486c575
+Deleted: sha256:5b98423ee68b954601a93be494cbf128034a3db73e9bba86dfbccb3487ca3758
+Deleted: sha256:577174891c779d8b287b2132bfc1335f435f6b167716fdc410c6645a37b37ab2
+Deleted: sha256:df64d3292fd6194b7865d7326af5255db6d81e9df29f48adde61a918fbd8c332
+[desktop] 15:53 root@jkh-7:~# 
+```
+
 ## Authors
 
 * **Joe Horvath** - *Initial work* - (joshorva@cisco.com)
+
 
 ## Licenses
 

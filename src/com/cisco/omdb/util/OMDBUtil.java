@@ -44,7 +44,6 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.cisco.as.base.util.LogicException;
 import com.cisco.omdb.Main;
 
 /**
@@ -163,7 +162,7 @@ public class OMDBUtil extends Object
 
             throw new LogicException ("Cannot perform GET (" + uri + ") -- code: " + code + ", reason: " + reason);
         }
-        
+
         return (response.getContents ());
     }
 

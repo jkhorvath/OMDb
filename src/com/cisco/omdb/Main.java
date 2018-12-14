@@ -33,7 +33,8 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.cisco.as.base.util.LogicException;
+import com.cisco.omdb.properties.OMDBProperties;
+import com.cisco.omdb.util.LogicException;
 import com.cisco.omdb.util.OMDBUtil;
 
 /**
@@ -186,9 +187,7 @@ public class Main extends Object
                     }
 
                     if (!found)
-                    {
                         Main.logger.warn ("Could not find desired rating source ({}) for Movie Title: {}", Main.DESIRED_RATING_SOURCE, movieTitle);
-                    }
                 }
                 else
                 {
