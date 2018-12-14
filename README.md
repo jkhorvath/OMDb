@@ -209,4 +209,4 @@ Deleted: sha256:df64d3292fd6194b7865d7326af5255db6d81e9df29f48adde61a918fbd8c332
 
 ## Acknowledgments
 
-* This sample application makes use of some framework code I wrote a while ago that manages Java Properties. Hence the inclusion of the additional libraries. 
+* This sample application only uses publicly available 3rd party libraries available on most Maven repositories.
