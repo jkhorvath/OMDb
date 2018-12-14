@@ -9,7 +9,7 @@
 // Notes                :
 //
 // Updates              :
-//                               new - root - December 13, 2018
+//                               new - Joe Horvath - December 13, 2018
 ///////////////////////////////////////////////////////////////////////
 //
 // *********************** Module/Class Description *******************

@@ -10,7 +10,7 @@
 // Notes :
 //
 // Updates :
-// new - Joe Horvath - July 29, 2014
+// new - Joe Horvath - December 13, 2018
 // /////////////////////////////////////////////////////////////////////
 //
 // *********************** Module/Class Description *******************
@@ -25,7 +25,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * A OMDBProperties class is used for...
+ * A OMDBProperties class is used for holding properties specific to the OMDb application
  *
  * @version %I%
  * @author Joe Horvath (joshorva@cisco.com)
@@ -38,6 +38,7 @@ public class OMDBProperties extends CommonPropertiesBase
     private final static OMDBProperties instance;
 
     // log4j logger object
+    @SuppressWarnings ("unused")
     private final static Logger         logger                = LogManager.getLogger (OMDBProperties.class.toString ());
 
     private final static String         PROPERTIES_FILE_NAME  = "omdb.properties";

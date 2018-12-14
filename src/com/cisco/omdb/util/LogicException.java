@@ -24,7 +24,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * A LogicException class is used for...
+ * A LogicException class is used for signaling application exceptions
  *
  * @author Joe Horvath (joshorva@cisco.com)
  */

@@ -9,7 +9,7 @@
 // Notes :
 //
 // Updates :
-// new - Joe Horvath - July 5, 2012
+// new - Joe Horvath - December 13, 2018
 // /////////////////////////////////////////////////////////////////////
 //
 // *********************** Module/Class Description *******************
@@ -21,6 +21,7 @@
 package com.cisco.omdb.properties;
 
 import java.io.BufferedReader;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,6 +43,11 @@ import org.apache.logging.log4j.Logger;
 
 import com.cisco.omdb.util.LogicException;
 
+/**
+ * A CommonPropertiesBase class is used for managing Java Property keys and values
+ *
+ * @author Joe Horvath (joshorva@cisco.com)
+ */
 public abstract class CommonPropertiesBase extends Properties implements CommonProperties_IF
 {
     public static String        hostname         = null;
