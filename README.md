@@ -50,7 +50,7 @@ Server:
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running.
+A step by step explanation of how to download, compile, and run this example.
 
 Clone the GIT repository
 
@@ -96,7 +96,7 @@ Or, run the docker image once telling the docker image to execute the sample usi
 
 Run the docker image as an interactive shell so that you can re-attach to the container.
 Note that the default logging level is set to `warn`. Other logging levels can be specified on the command line as in the example command invocations below.
-Notice that the persistent logs for the application are stored in the `logs` subdirectory. The log file `omdb.log` is appended to until it get larger than 50 MB or older than one day. After that it gets rolled.
+Notice that the persistent logs for the application are stored in the `logs` subdirectory. The logs contained within the `omdb.log` file will also contain additional logging information (such as timestamp, code location, etc.). The log file `omdb.log` is appended to until it get larger than 50 MB or older than one day. After that it gets rolled into a timestamped ZIP file.
 
 ```
 # docker run -it omdb /bin/sh
@@ -158,6 +158,10 @@ After the movie name is given, an additional argument can be passed to denote th
 ## Authors
 
 * **Joe Horvath** - *Initial work* - (joshorva@cisco.com)
+
+## Licenses
+
+* Please note that the OMDb lookup service uses my personal (and free) OMDb key (contained within the omdb.properties file).
 
 
 ## Acknowledgments
