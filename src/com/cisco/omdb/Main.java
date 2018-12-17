@@ -73,6 +73,7 @@ public class Main extends Object
 
     public static void main (final String [] args)
     {
+        // Prepare to scan through command line arguments to look for input parameters and options.
         String plotRequested = Main.OMDB_MOVIE_SHORT_PLOT_VALUE;
         String typeRequested = null;
         String movieNameRequested = null;
@@ -104,20 +105,24 @@ public class Main extends Object
             }
             else if (null == movieNameRequested)
             {
+                // First non-option is the movie name
                 movieNameRequested = args[argsIndex++];
                 Main.logger.debug ("Using \"movie name\" argument: \"{}\"", movieNameRequested);
             }
             else
             {
+                // If there is another non-option, then that is movie year.
                 movieYearRequested = args[argsIndex++];
                 Main.logger.debug ("Using \"movie year\" argument: \"{}\"", movieYearRequested);
             }
 
+        // If we didn't get at least a movie name, then we cannot proceed
         if (null == movieNameRequested)
             Main.usage ();
 
         try
         {
+            // Build up the HTTP GET URL and URI to the OMDb database service
             final URIBuilder builder = new URIBuilder (Main.OMDB_API_URL);
             builder.addParameter (Main.MOVIE_TITLE_PARAM, movieNameRequested);
             builder.addParameter (Main.API_KEY_PARAM, OMDBProperties.getApiKey ());
@@ -126,24 +131,29 @@ public class Main extends Object
                 builder.addParameter (Main.TYPE_PARAM, typeRequested);
 
             builder.addParameter (Main.RESPONSE_DATA_TYPE_PARAM, Main.RESPONSE_JSON_TYPE);
-
             builder.addParameter (Main.OMDB_MOVIE_PLOT_TYPE, plotRequested);
 
             if (null != movieYearRequested)
                 builder.addParameter (Main.MOVIE_YEAR_PARAM, movieYearRequested);
 
+            // Perform the HTTP GET to the OMDb service
             final JsonStructure jsonResponse = OMDBUtil.wrappedCoreGet (builder.build ());
 
+            // Make sure that we can handle the response type
             if (JsonValue.ValueType.OBJECT == jsonResponse.getValueType ())
             {
+                // Move the response into an object that we can inspect
                 final JsonObject movieJsonObject = (JsonObject) jsonResponse;
 
+                // Did OMDb locate the movie?
                 final String responseType = OMDBUtil.getValueIfKeyPresent (Main.RESPONSE_TYPE_KEY, movieJsonObject);
 
                 if (Boolean.parseBoolean (responseType))
                 {
+                    // OMDb did find the movie
                     final String movieTitle = movieJsonObject.getString (Main.MOVIE_TITLE_VALUE_KEY);
 
+                    // Pick up all the attributes that OMDb gave us and output them to the log
                     final StringBuffer label = new StringBuffer ();
 
                     for (final Object keyObj : movieJsonObject.keySet ())
@@ -165,6 +175,7 @@ public class Main extends Object
 
                     Main.logger.info ("Located {}", label.toString ());
 
+                    // Scan through all the ratings (if any) looking for the "Rotten Tomatoes" rating
                     final JsonArray ratings = movieJsonObject.getJsonArray (Main.RATINGS_KEY);
 
                     boolean found = false;
@@ -177,6 +188,7 @@ public class Main extends Object
 
                         if (Main.DESIRED_RATING_SOURCE.equals (ratingSource))
                         {
+                            // We found a rating from "Rotten Tomatoes" (there may be more?)
                             found = true;
 
                             Main.logger.info ("Movie title \"{}\" has rating of {} from \"{}\"", movieTitle, movieRating, ratingSource);
@@ -186,11 +198,13 @@ public class Main extends Object
                             Main.logger.info ("Movie rating source ({}) of \"{}\" for Movie Title: {} is not the desired rating source ({})", ratingSource, movieRating, movieTitle, Main.DESIRED_RATING_SOURCE);
                     }
 
+                    // Check if we never found a rating from "Rotten Tomatoes"
                     if (!found)
                         Main.logger.warn ("Could not find desired rating source ({}) for Movie Title: {}", Main.DESIRED_RATING_SOURCE, movieTitle);
                 }
                 else
                 {
+                    // OMDb could not find the movie
                     final String errorMessage = OMDBUtil.getValueIfKeyPresent (Main.ERROR_KEY, movieJsonObject);
                     Main.logger.warn ("Could not retrieve movie \"{}\"{}: {}", movieNameRequested, ((null == movieYearRequested) ? "" : " for year " + movieYearRequested), errorMessage);
                 }
