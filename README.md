@@ -76,19 +76,19 @@ Test the output of the build
 # java -jar target/OMDb-1.0.1-jar-with-dependencies.jar batman
 ```
 
-Create a docker image
+Create a docker image to hold this application. Remember that this is just an example of how to package an application into a Docker image. Docker images should really hold services that are meant to be distributed across a network for scalability and availability. Applications that use machine type of interfaces (like REST) are typically the types of application that become distributed and scaled service aross a network using Docker. This application is just a Docker example.
 
 ```
 # docker build -t omdb .
 ```
 
-Run the docker image once telling the docker image to execute the sample
+Run the docker image once telling the docker image to execute the sample using the command line arguments given.
 
 ```
 # docker run omdb /home/OMDB/run.sh batman
 ```
 
-Or, run the docker image once telling the docker image to execute the sample using the raw `java` command
+Or, run the docker image once telling the docker image to execute the sample using the raw `java` command using the command line arguments given.
 
 ```
 # docker run omdb java -jar /home/OMDB/OMDb.jar batman
